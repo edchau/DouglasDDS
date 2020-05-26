@@ -10,7 +10,6 @@ store = []
 
 app.use(bodyParser.json())
 app.use(errorhandler())
-app.use(express.static(path.join(__dirname, 'client/build')));
 
 if(process.env.NODE_ENV === 'production'){
     //set static folder
