@@ -46,7 +46,7 @@ class App extends Component {
             <img src={logo} width="250" height="100"/>
             <Switch>
               <Route exact path="/Gt9jakZ6RMBZwRP5z3" component={Administrator}/>
-              <Route exact path="/check-in" component={CheckIn}/>
+              <Route exact path="/" component={CheckIn}/>
               <Route component={Error}/>
             </Switch>
           </div>
