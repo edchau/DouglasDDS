@@ -22,6 +22,7 @@ app.get('*',(req, res) => {
 
 app.get('/patients', (req, res) => {
     console.log("GET")
+    console.log(store)
     res.status(200).send(store)
 })
 
