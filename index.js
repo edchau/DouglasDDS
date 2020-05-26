@@ -38,7 +38,9 @@ app.post('/patients', (req, res) => {
     let num = String(req.body.number)
     let id = store.length
     let date = new Date();
-    let time = formatAMPM(date)
+    let UTC = new Date(date.toUTCString())
+    UTC.setHours(UTC.getHours()-7)
+    let time = formatAMPM(UTC)
     
     num = '(' + num.substring(0, 3) + ') ' + num.substring(3, 6) + '-' + num.substring(6)
     store = [...store, {first: req.body.first,
