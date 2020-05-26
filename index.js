@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const errorhandler = require('errorhandler')
+const path = require('path');
 
 const app = express()
 
