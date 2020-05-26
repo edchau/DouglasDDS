@@ -11,29 +11,48 @@ app.use(bodyParser.json())
 app.use(errorhandler())
 
 app.get('/patients', (req, res) => {
+    console.log("GET")
     res.status(200).send(store)
 })
 
+function formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  }
+
 app.post('/patients', (req, res) => {
+    console.log("POST")
     let num = String(req.body.number)
     let id = store.length
+    let date = new Date();
+    let time = formatAMPM(date)
+    
     num = '(' + num.substring(0, 3) + ') ' + num.substring(3, 6) + '-' + num.substring(6)
     store = [...store, {first: req.body.first,
                         last: req.body.last,
                         number: num,
                         checked: false,
-                        id: id}]
+                        id: id,
+                        time: time}]
     console.log(store)
     res.sendStatus(201)
 })
 
 app.patch('/patients/:id', (req, res) => {
+    console.log("PATCH")
     store[req.params.id].checked = req.body.checked
     console.log(store)
     res.sendStatus(204)
-  });
+});
 
 app.delete('/patients', function(req, res) {
+    console.log("DELETE")
     store = []
     res.sendStatus(204)
 });
