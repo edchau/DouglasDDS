@@ -3,7 +3,7 @@ import React from 'react';
 class Admin extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { patients: [] };
+      this.state = { patients: [], user:"", pass:""};
       this.getData = this.getData.bind(this)
     }
 
@@ -12,29 +12,29 @@ class Admin extends React.Component {
     }
 
     componentWillUnmount() {
-        /*
-          stop getData() from continuing to run even
-          after unmounting this component. Notice we are calling
-          'clearTimeout()` here rather than `clearInterval()` as
-          in the previous example.
-        */
         clearTimeout(this.intervalID);
+    }
+
+    handleChangeUser(event) {
+      this.setState({ user: event.target.value });
+    }
+
+    handleChangePass(event) {
+      this.setState({ pass: event.target.value });
     }
 
     getData() {
         fetch('/patients')
         .then(res => res.json())
-        .then(patients => {
-            this.setState({ patients })
-        })
+        .then(patients => this.setState({ patients }))
         .catch(err => console.log(err));
         this.intervalID = setTimeout(this.getData, 5000);
     }
 
     updateData(id, check) {
-      fetch('/patients/' + id, {method: 'PATCH',
+      fetch('/patients/' + id.toString(), {method: 'PATCH',
       headers: {'Content-Type': 'application/json'}, 
-      body: JSON.stringify({ id: id, checked: check})})
+      body: JSON.stringify({checked: check})})
         .catch(err => console.log(err));
       window.location.reload(false);
   }
@@ -48,23 +48,23 @@ class Admin extends React.Component {
     render() {
       return (
         <div>
-          <ul class="responsive-table">
-              <li class="table-header">
-                <div class="col col-1">Name</div>
-                <div class="col col-2">Phone Number</div>
-                <div class="col col-3">Time</div>
-                <div class="col col-4">Status</div>
+          <ul className="responsive-table">
+              <li className="table-header">
+                <div className="col col-1">Name</div>
+                <div className="col col-2">Phone Number</div>
+                <div className="col col-3">Time</div>
+                <div className="col col-4">Status</div>
               </li>
             {this.state.patients.map(user =>
-              <li class="table-row">
-                <div class="col col-1" data-label="Name">{user.first} {user.last}</div>
-                <div class="col col-2" data-label="Phone Number">{user.number}</div>
-                <div class="col col-3" data-label="Time">{user.time}</div>
-                <div class="col col-4" data-label="Status">
-                <label class="check">
+              <li className="table-row">
+                <div className="col col-1" data-label="Name">{user.first} {user.last}</div>
+                <div className="col col-2" data-label="Phone Number">{user.number}</div>
+                <div className="col col-3" data-label="Time">{user.time}</div>
+                <div className="col col-4" data-label="Status">
+                <label className="check">
                     <input type="checkbox" checked={user.checked} 
                         onClick = {this.updateData.bind(this, user.id, !user.checked)}/>
-                    <div class="box"></div>
+                    <div className="box"></div>
                 </label>
                 </div>
               </li>
@@ -72,7 +72,8 @@ class Admin extends React.Component {
           </ul>
         <br/>
         <br/>
-            <button onClick = {this.deleteData.bind(this)} className="FormField__Button">Clear</button>
+          <button onClick = {() => { if (window.confirm('Are you sure you wish to clear this list?')) this.deleteData()}}
+            className="FormField__Button">Clear</button>
         </div>
       );
     }

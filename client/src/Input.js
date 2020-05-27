@@ -1,9 +1,11 @@
 import React from 'react';
+import { Redirect } from 'react-router'
+
 
 class Input extends React.Component {
     constructor(props) {
       super(props);
-      this.state = { first: "", last: "", number: "", pre:false, error: false };
+      this.state = { first: "", last: "", number: "", error: false };
     }
     handleChangeFirst(event) {
       this.setState({ first: event.target.value });
@@ -25,7 +27,7 @@ class Input extends React.Component {
                 headers: {'Content-Type': 'application/json'}, 
                 body: JSON.stringify({ first: this.state.first.trim(), 
                         last: this.state.last.trim(),
-                        number:num})})
+                        number: num})})
         .catch(err => this.setState({error:true}));
         this.setState({pre:true})
       }
@@ -33,7 +35,7 @@ class Input extends React.Component {
 
     render() {
       if (this.state.pre) {
-        return <div>Thank you! We will contact you when we're ready.</div>
+        return <Redirect to={'/success'}/>
       }
 
       return (
@@ -41,7 +43,7 @@ class Input extends React.Component {
         <p>Please fill out this form to check in upon arrival.</p>
         <br/>
         <br/>
-        <form className = "FormFields" onSubmit={this.handleSubmit}>
+        <form className = "FormFields">
           <label className = "FormField__Label">First Name</label>
           <br/>
             <input
@@ -69,7 +71,7 @@ class Input extends React.Component {
             />
           <br/>
           <br/>
-          <button className = "FormField__Button">Check In</button>
+          <button className = "FormField__Button" onClick={this.handleSubmit.bind(this)}>Check In</button>
         </form>
         </div>
       );

@@ -8,7 +8,7 @@ import logo from './ddslogo.png'
 
 const Administrator = () => {
   return (
-    <div>
+    <div className = "center">
       <h2>Patient Check In List</h2>
       <br/>
       <Admin/>
@@ -18,10 +18,19 @@ const Administrator = () => {
 
 const CheckIn = () => {
   return (
-    <div className = "FormCenter">
+    <div className = "center">
       <h2>Welcome to Douglas Nguyen, DDS!</h2>
       <br/>
       <Input/>
+    </div>
+  );
+};
+
+const Success = () => {
+  return (
+    <div className = "center">
+      <h2>Thank you!</h2>
+      <h3> We will contact you when we're ready</h3>
     </div>
   );
 };
@@ -43,10 +52,11 @@ class App extends Component {
       <BrowserRouter>
         <div className = "App">
           <div className = "App__Form">
-            <img src={logo} width="250" height="100"/>
+            <img src={logo} width="250" height="100" className="center"/>
             <Switch>
               <Route exact path="/Gt9jakZ6RMBZwRP5z3" component={Administrator}/>
               <Route exact path="/" component={CheckIn}/>
+              <Route exact path="/success" component={Success}/>
               <Route component={Error}/>
             </Switch>
           </div>

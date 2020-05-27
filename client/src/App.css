@@ -5,6 +5,12 @@
   text-align: center
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .App__Form {
   width: 100%;
   background-color: #2E4158;
@@ -78,10 +84,6 @@ body {
   }
 }
 
-.FormCenter {
-  margin-bottom: 100px;
-}
-
 .FormTitle {
   color: #707C8B;
   font-weight: 300;
@@ -96,6 +98,20 @@ body {
 }
 .FormField__Input {
   width: 85%;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  border-bottom: 1px solid #445366;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.Login__Input {
+  width: 25%;
   text-align: center;
   background-color: transparent;
   border: none;
