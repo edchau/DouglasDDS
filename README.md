@@ -6,4 +6,4 @@ During COVID-19, Douglas Nguyen, DDS requires patients to call in notifying staf
 <br/>
 ### Check-in: https://douglas-dds.herokuapp.com/
 ### Patient Waiting List: https://douglas-dds.herokuapp.com/Gt9jakZ6RMBZwRP5z3
-#### Used Reactjs and Express server 
+#### Used Reactjs and Express server with MongoDB
