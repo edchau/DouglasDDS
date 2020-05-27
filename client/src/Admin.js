@@ -72,7 +72,7 @@ class Admin extends React.Component {
           </ul>
         <br/>
         <br/>
-          <button onClick = {() => { if (window.confirm('Are you sure you wish to clear this list?')) this.deleteData()}}
+          <button onClick = {() => { if (window.confirm('Are you sure you want to clear this list?')) this.deleteData()}}
             className="FormField__Button">Clear</button>
         </div>
       );
