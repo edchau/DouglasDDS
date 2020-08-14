@@ -1,4 +1,4 @@
-# Check in form for Douglas Nguyen, DDS (no longer in use)
+# Check in form for Douglas Nguyen, DDS (inactive)
 9600 Bolsa Avenue. Suite E
 Westminster, CA 92683
 <br/><br/>
